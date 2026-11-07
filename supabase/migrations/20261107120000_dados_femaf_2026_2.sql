@@ -15,7 +15,7 @@ UPDATE public.app_settings
             jsonb_build_object('id','ped','nome','Pedagogia'),
             jsonb_build_object('id','psi','nome','Psicologia')),
          'primary_hsl', '246 76% 28%',
-         'geofence', COALESCE(data->'geofence', '{}'::jsonb) || jsonb_build_object('lat', -4.5694, 'lng', -44.5996, 'raio_m', 900)),
+         'geofence', COALESCE(data->'geofence', '{}'::jsonb) || jsonb_build_object('lat', -4.5635410, 'lng', -44.5994555, 'raio_m', 900)),
        updated_at = now()
  WHERE id = 'global';
 

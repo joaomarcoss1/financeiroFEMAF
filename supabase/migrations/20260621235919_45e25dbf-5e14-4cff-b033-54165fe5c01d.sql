@@ -39,8 +39,8 @@ BEGIN
 
   -- Geofence
   SELECT data INTO v_cfg FROM public.app_settings WHERE id='global';
-  v_lat := COALESCE((v_cfg->'geofence'->>'lat')::double precision, -4.5694);
-  v_lng := COALESCE((v_cfg->'geofence'->>'lng')::double precision, -44.5996);
+  v_lat := COALESCE((v_cfg->'geofence'->>'lat')::double precision, -4.5635410);
+  v_lng := COALESCE((v_cfg->'geofence'->>'lng')::double precision, -44.5994555);
   v_raio := COALESCE((v_cfg->'geofence'->>'raio_m')::int, 900);
   IF p_lat IS NULL OR p_lng IS NULL THEN
     RAISE EXCEPTION 'GPS_OBRIGATORIO';

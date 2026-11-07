@@ -839,7 +839,7 @@ CREATE POLICY "Admins manage app_settings" ON public.app_settings FOR ALL TO aut
 INSERT INTO public.app_settings (id, data) VALUES (
   'global',
   jsonb_build_object(
-    'geofence', jsonb_build_object('lat', -4.5694, 'lng', -44.5996, 'raio_m', 900),
+    'geofence', jsonb_build_object('lat', -4.5635410, 'lng', -44.5994555, 'raio_m', 900),
     'minutos_por_horario', 50,
     'valor_hora_padrao', 0,
     'primary_hsl', '246 76% 28%',
@@ -3056,8 +3056,8 @@ BEGIN
 
   -- Geofence
   SELECT data INTO v_cfg FROM public.app_settings WHERE id='global';
-  v_lat := COALESCE((v_cfg->'geofence'->>'lat')::double precision, -4.5694);
-  v_lng := COALESCE((v_cfg->'geofence'->>'lng')::double precision, -44.5996);
+  v_lat := COALESCE((v_cfg->'geofence'->>'lat')::double precision, -4.5635410);
+  v_lng := COALESCE((v_cfg->'geofence'->>'lng')::double precision, -44.5994555);
   v_raio := COALESCE((v_cfg->'geofence'->>'raio_m')::int, 900);
   IF p_lat IS NULL OR p_lng IS NULL THEN
     RAISE EXCEPTION 'GPS_OBRIGATORIO';
@@ -6248,7 +6248,7 @@ UPDATE public.app_settings
             jsonb_build_object('id','ped','nome','Pedagogia'),
             jsonb_build_object('id','psi','nome','Psicologia')),
          'primary_hsl', '246 76% 28%',
-         'geofence', COALESCE(data->'geofence', '{}'::jsonb) || jsonb_build_object('lat', -4.5694, 'lng', -44.5996, 'raio_m', 900)),
+         'geofence', COALESCE(data->'geofence', '{}'::jsonb) || jsonb_build_object('lat', -4.5635410, 'lng', -44.5994555, 'raio_m', 900)),
        updated_at = now()
  WHERE id = 'global';
 
@@ -6690,3 +6690,14 @@ INSERT INTO public.calendario_academico (data, tipo, descricao) VALUES
   ('2026-12-25','feriado','Natal')
 ON CONFLICT (data) DO NOTHING;
 
+
+-- ===== 20261107150000_localizacao_femaf.sql =====
+-- Cerca de GPS do ponto: FEMAF – Av. Dr. João Alberto, 100, Residencial Maria Rita, Pedreiras-MA
+-- (coordenada da Av. Dr. João Alberto no OpenStreetMap; raio de 900 m cobre toda a avenida)
+UPDATE public.app_settings
+   SET data = data || jsonb_build_object('geofence',
+         COALESCE(data->'geofence', '{}'::jsonb)
+         || jsonb_build_object('lat', -4.5635410, 'lng', -44.5994555, 'raio_m', 900,
+                               'endereco', 'Av. Dr. João Alberto, 100 – Residencial Maria Rita, Pedreiras-MA, 65725-000')),
+       updated_at = now()
+ WHERE id = 'global';

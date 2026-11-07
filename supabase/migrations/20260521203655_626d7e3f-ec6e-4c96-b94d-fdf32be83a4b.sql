@@ -18,7 +18,7 @@ CREATE POLICY "Admins manage app_settings" ON public.app_settings FOR ALL TO aut
 INSERT INTO public.app_settings (id, data) VALUES (
   'global',
   jsonb_build_object(
-    'geofence', jsonb_build_object('lat', -4.5694, 'lng', -44.5996, 'raio_m', 900),
+    'geofence', jsonb_build_object('lat', -4.5635410, 'lng', -44.5994555, 'raio_m', 900),
     'minutos_por_horario', 50,
     'valor_hora_padrao', 0,
     'primary_hsl', '246 76% 28%',

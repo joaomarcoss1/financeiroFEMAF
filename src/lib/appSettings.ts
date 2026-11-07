@@ -38,7 +38,7 @@ export const DEFAULT_MENU_ITEMS: MenuItemCfg[] = [
 ];
 
 export const DEFAULT_SETTINGS: AppSettings = {
-  geofence: { lat: -4.5694, lng: -44.5996, raio_m: 900 },
+  geofence: { lat: -4.5635410, lng: -44.5994555, raio_m: 900 },
   minutos_por_horario: 50,
   minutos_pagamento_hora_aula: 60,
   valor_hora_padrao: 0,

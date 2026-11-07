@@ -10,8 +10,8 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-const DEFAULT_FEMAF_LAT = -4.5694; // Pedreiras-MA (ajustável em Configurações)
-const DEFAULT_FEMAF_LNG = -44.5996;
+const DEFAULT_FEMAF_LAT = -4.5635410; // FEMAF – Av. Dr. João Alberto, 100, Pedreiras-MA
+const DEFAULT_FEMAF_LNG = -44.5994555;
 const DEFAULT_RAIO_PERMITIDO_METROS = 900;
 const DEFAULT_MINUTOS_POR_HORARIO = 50;
 
