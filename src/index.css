@@ -1,0 +1,571 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 246 20% 97%;
+    --foreground: 246 30% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 246 30% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 246 30% 10%;
+
+    --primary: 246 76% 28%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 208 91% 44%;
+
+    --secondary: 201 100% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 246 15% 93%;
+    --muted-foreground: 246 10% 45%;
+
+    --accent: 208 91% 44%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 246 15% 88%;
+    --input: 246 15% 88%;
+    --ring: 208 91% 44%;
+
+    --radius: 0.875rem;
+
+    --sidebar-background: 243 74% 20%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 201 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 246 50% 30%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 246 40% 35%;
+    --sidebar-ring: 201 80% 55%;
+
+    --success: 152 60% 36%;
+    --warning: 38 92% 50%;
+    --info: 200 70% 50%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(246, 76%, 28%), hsl(208, 91%, 44%));
+    --shadow-elegant: 0 10px 40px -12px hsl(246 60% 28% / 0.2);
+    --shadow-card: 0 4px 24px -4px hsl(246 30% 10% / 0.08);
+
+    /* ---- Camada premium ---- */
+    --primary-deep: 246 68% 14%;
+    --gold: 201 100% 46%;
+    --gold-glow: 201 90% 68%;
+    --shadow-premium: 0 20px 60px -16px hsl(246 60% 20% / 0.25), 0 4px 16px -4px hsl(246 30% 10% / 0.08);
+    --shadow-glow-primary: 0 0 0 1px hsl(var(--primary) / 0.08), 0 12px 32px -8px hsl(var(--primary) / 0.35);
+    --shadow-glow-gold: 0 8px 24px -6px hsl(var(--gold) / 0.45);
+    --gradient-mesh: radial-gradient(ellipse 80% 60% at 15% 0%, hsl(246 55% 30% / 0.55), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 100% 20%, hsl(201 80% 55% / 0.30), transparent 55%),
+      radial-gradient(ellipse 70% 60% at 50% 100%, hsl(246 60% 20% / 0.55), transparent 60%),
+      linear-gradient(160deg, hsl(246 65% 12%), hsl(246 55% 8%) 60%, hsl(246 45% 6%));
+    --gradient-gold-line: linear-gradient(90deg, transparent, hsl(var(--gold)), transparent);
+
+    /* Versão clara do mesh institucional — mesmos matizes do --gradient-mesh
+       (índigo + azul royal + azul-céu da logo FEMAF), em glows de canto sobre uma base levemente
+       fria (nunca branco puro), para dar cor/profundidade real ao fundo
+       do sistema sem comprometer a leitura do texto escuro padrão no centro. */
+    --gradient-mesh-light: radial-gradient(ellipse 62% 52% at 0% 0%, hsl(246 55% 42% / 0.32), transparent 58%),
+      radial-gradient(ellipse 58% 50% at 100% 0%, hsl(201 85% 55% / 0.28), transparent 55%),
+      radial-gradient(ellipse 62% 55% at 100% 100%, hsl(246 60% 30% / 0.26), transparent 58%),
+      radial-gradient(ellipse 60% 55% at 0% 100%, hsl(212 85% 55% / 0.16), transparent 55%),
+      linear-gradient(135deg, hsl(246 25% 95%), hsl(246 18% 96%) 50%, hsl(201 32% 95%));
+  }
+
+  .dark {
+    --background: 246 20% 8%;
+    --foreground: 246 15% 92%;
+
+    --card: 246 18% 12%;
+    --card-foreground: 246 15% 92%;
+
+    --popover: 246 18% 12%;
+    --popover-foreground: 246 15% 92%;
+
+    --primary: 232 85% 66%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 201 100% 60%;
+
+    --secondary: 201 70% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 246 15% 18%;
+    --muted-foreground: 246 10% 60%;
+
+    --accent: 212 80% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 246 15% 20%;
+    --input: 246 15% 20%;
+    --ring: 201 100% 55%;
+
+    --sidebar-background: 246 25% 10%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 201 70% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 246 40% 20%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 246 20% 25%;
+    --sidebar-ring: 201 70% 50%;
+
+    --success: 152 55% 45%;
+    --warning: 38 90% 55%;
+    --info: 200 65% 55%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(246, 70%, 40%), hsl(208, 91%, 48%));
+    --shadow-elegant: 0 10px 40px -12px hsl(246 55% 45% / 0.15);
+    --shadow-card: 0 4px 24px -4px hsl(0 0% 0% / 0.3);
+
+    --primary-deep: 246 45% 6%;
+    --gold: 201 75% 55%;
+    --gold-glow: 201 85% 68%;
+    --shadow-premium: 0 20px 60px -16px hsl(0 0% 0% / 0.5), 0 4px 16px -4px hsl(0 0% 0% / 0.3);
+    --shadow-glow-primary: 0 0 0 1px hsl(var(--primary) / 0.15), 0 12px 32px -8px hsl(var(--primary) / 0.4);
+    --shadow-glow-gold: 0 8px 24px -6px hsl(var(--gold) / 0.35);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-card/70 backdrop-blur-xl border border-border/40 rounded-xl;
+    box-shadow: var(--shadow-card);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  .glass-card-hover:hover {
+    @apply shadow-lg -translate-y-0.5;
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-accent {
+    background: linear-gradient(135deg, hsl(201, 80%, 55%), hsl(212, 85%, 55%));
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .btn-glow {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-glow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, hsl(0 0% 100% / 0.15), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+  }
+
+  .btn-glow:hover::after {
+    transform: translateX(100%);
+  }
+
+  .status-pulse {
+    animation: status-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes status-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.08), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Tap feedback for cards/touch targets */
+  .tap-press {
+    @apply transition-transform duration-150 ease-out active:scale-[0.98];
+  }
+
+  /* Smooth scroll on supported browsers */
+  html { scroll-behavior: smooth; }
+
+  /* Better focus visibility */
+  :focus-visible {
+    outline-offset: 2px;
+  }
+
+  /* Respect reduced motion preference globally */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Prevent layout jump when mobile keyboard opens */
+  @supports (height: 100dvh) {
+    .min-h-screen { min-height: 100dvh; }
+  }
+}
+
+@layer utilities {
+  /* ================= Camada premium ================= */
+
+  /* Painel hero com gradiente institucional em camadas (índigo profundo + toques azul-céu) */
+  .mesh-hero {
+    background-image: var(--gradient-mesh);
+    background-size: 200% 200%;
+    animation: gradient-x 18s ease infinite;
+  }
+
+  /* Fundo de sistema (telas públicas): mesmo mesh institucional, em versão
+     clara sutil por padrão — no escuro, reaproveita o --gradient-mesh cheio,
+     já pensado para texto claro por cima. */
+  .app-mesh-bg {
+    background-image: var(--gradient-mesh-light);
+    background-size: 180% 180%;
+    animation: gradient-x 26s ease infinite;
+  }
+  .dark .app-mesh-bg {
+    background-image: var(--gradient-mesh);
+  }
+
+  /* Textura sutil de grão — adiciona sofisticação sem pesar visualmente */
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Orbes flutuantes desfocados — profundidade ambiente para painéis hero */
+  .orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(60px);
+    pointer-events: none;
+  }
+
+  /* Linha azul-céu fina — divisor elegante */
+  .gold-divider {
+    height: 1px;
+    background: var(--gradient-gold-line);
+  }
+
+  /* Card premium: glass + sombra em camadas + friso azul-céu sutil no topo.
+     Um wash diagonal muito sutil (índigo/azul-céu institucional) evita o
+     card ficar "branco chapado" sem comprometer a legibilidade do conteúdo. */
+  .premium-card {
+    @apply relative bg-card/85 backdrop-blur-2xl border border-border/50 rounded-2xl overflow-hidden;
+    background-image: linear-gradient(155deg, hsl(var(--primary) / 0.05), transparent 40%),
+      linear-gradient(-25deg, hsl(var(--gold) / 0.045), transparent 35%);
+    box-shadow: var(--shadow-premium);
+  }
+  .premium-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gradient-gold-line);
+    opacity: 0.6;
+  }
+
+  /* Botão premium: glow colorido + leve elevação no hover */
+  .btn-premium {
+    @apply transition-all duration-300 ease-premium;
+    box-shadow: var(--shadow-glow-primary);
+  }
+  .btn-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.12), 0 20px 40px -10px hsl(var(--primary) / 0.45);
+  }
+  .btn-premium:active {
+    transform: translateY(0px) scale(0.98);
+  }
+
+  /* Input com anel de foco azul-céu sutil */
+  .input-premium:focus-visible {
+    @apply outline-none ring-2 ring-offset-0;
+    box-shadow: 0 0 0 3px hsl(var(--gold) / 0.25), 0 0 0 1px hsl(var(--gold) / 0.5);
+    border-color: hsl(var(--gold) / 0.6);
+  }
+
+  /* Kicker/eyebrow: rótulo pequeno em versalete acima de um título, com o
+     azul-céu institucional — para dar hierarquia de "plataforma grande" antes
+     de headings importantes. */
+  .eyebrow {
+    @apply inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.2em];
+    color: hsl(var(--gold));
+  }
+
+  /* Badge circular de ícone com leve "respiração" no hover — usado em
+     cabeçalhos de card e indicadores de status. */
+  .icon-badge {
+    @apply relative flex items-center justify-center shrink-0 transition-transform duration-300 ease-premium;
+  }
+  .icon-badge:hover {
+    transform: scale(1.06);
+  }
+
+  /* Texto com gradiente azul-céu animado — usar com moderação em headlines */
+  .text-shimmer-gold {
+    background: linear-gradient(90deg, hsl(var(--gold)) 0%, hsl(var(--gold-glow)) 25%, hsl(var(--gold)) 50%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-x 4s linear infinite;
+  }
+
+  /* Elevação suave para cards clicáveis, com timing premium */
+  .lift-hover {
+    @apply transition-all duration-300 ease-premium;
+  }
+  .lift-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-premium);
+  }
+
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .scrollbar-thin { scrollbar-width: thin; scrollbar-color: hsl(var(--primary-foreground) / 0.3) transparent; }
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: hsl(var(--primary-foreground) / 0.3); border-radius: 3px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary-foreground) / 0.5); }
+}
+
+/* ── Central Acadêmica: linguagem institucional ─────────────────────────────
+   Superfícies planas com fio de contorno, raio pequeno, tipografia serifada nos títulos,
+   azul FEMAF profundo como cor de marca e azul-céu só como fio de acento. */
+:root { --inst-verde: 246 76% 28%; --inst-verde-escuro: 244 78% 20%; }
+.dark { --inst-verde: 232 70% 55%; --inst-verde-escuro: 232 70% 48%; }
+
+@layer components {
+  .inst-page { background: hsl(201 22% 97.5%); }
+  .dark .inst-page { background: hsl(var(--background)); }
+
+  .inst-bar { background: linear-gradient(100deg, hsl(244 78% 16%), hsl(246 76% 26%) 70%, hsl(240 60% 30%)); }
+  .inst-rule { height: 3px; background: linear-gradient(90deg, hsl(201 100% 46%), hsl(208 91% 44%) 55%, hsl(246 60% 45%)); }
+
+  .inst-title { font-family: 'Source Serif 4', Georgia, serif; @apply font-bold tracking-tight text-[hsl(246_55%_14%)] dark:text-foreground; }
+  .inst-kicker { @apply text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground; }
+
+  .inst-section { @apply rounded-md border border-border bg-card; }
+  .inst-section-head { @apply flex items-center justify-between gap-3 border-b border-border px-4 py-3 sm:px-5; }
+  .inst-section-title { @apply text-[13px] font-semibold uppercase tracking-[0.08em] text-foreground/80; }
+  .inst-section-body { @apply px-4 py-4 sm:px-5; }
+
+  .inst-list { @apply divide-y divide-border; }
+  .inst-row { @apply flex items-center gap-3 px-4 py-3.5 transition-colors hover:bg-muted/60 sm:px-5; }
+
+  .inst-field { @apply h-11 border-input bg-background shadow-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-0; }
+  .inst-num { font-variant-numeric: tabular-nums; letter-spacing: 0.01em; }
+  .inst-link { @apply font-medium text-[hsl(var(--inst-verde))] underline-offset-4 hover:underline dark:text-primary; }
+}
+
+/* Dentro da Central, controles com cantos sóbrios e botões sólidos (sem degradê nem elevação). */
+.inst-page .inst-field,
+.inst-page :is(input, textarea, button[role="combobox"]),
+.inst-page :is(button, a)[class*="rounded-lg"] { border-radius: 6px; }
+.inst-page :is(.rounded-xl, .rounded-2xl) { border-radius: 8px; }
+.inst-page :is(button, a)[class~="bg-primary"]:not([role="checkbox"], [role="switch"], [role="radio"]) {
+  background-image: none;
+  background-color: hsl(var(--inst-verde));
+  box-shadow: none;
+  transform: none;
+}
+.inst-page :is(button, a)[class~="bg-primary"]:not([role="checkbox"], [role="switch"], [role="radio"]):hover { background-color: hsl(var(--inst-verde-escuro)); }
+
+/* ── Central: identidade animada ────────────────────────────────────────────
+   Livro que se abre, guilhochê que se desenha, selo que carimba e microinterações.
+   Tudo desligado em prefers-reduced-motion. */
+.inst-folha {
+  transform-box: view-box;
+  transform-origin: 60px 74px;
+  animation: inst-livro 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes inst-livro {
+  from { opacity: 0; transform: rotate(var(--ang, 0deg)) scale(0.55); }
+  60% { opacity: 1; }
+  to { opacity: 1; transform: none; }
+}
+
+.inst-traco-ouro { stroke: hsl(201 70% 48% / 0.22); stroke-width: 0.8; }
+.inst-traco-verde { stroke: hsl(246 45% 30% / 0.13); stroke-width: 0.8; }
+.dark .inst-traco-ouro { stroke: hsl(201 70% 60% / 0.12); }
+.dark .inst-traco-verde { stroke: hsl(246 40% 60% / 0.08); }
+.inst-bar .inst-traco-ouro { stroke: hsl(201 80% 62% / 0.28); }
+.inst-bar .inst-traco-verde { stroke: hsl(246 60% 70% / 0.12); }
+.inst-desenhar { stroke-dasharray: 1; stroke-dashoffset: 1; animation: inst-desenho 2.6s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
+@keyframes inst-desenho { to { stroke-dashoffset: 0; } }
+.inst-girar { transform-box: view-box; transform-origin: 0 0; animation: inst-giro 240s linear infinite; }
+.inst-girar-lento { transform-box: view-box; transform-origin: 0 0; animation: inst-giro 60s linear infinite; }
+@keyframes inst-giro { to { transform: rotate(360deg); } }
+
+.inst-selo { animation: inst-carimbo 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both; }
+@keyframes inst-carimbo {
+  from { opacity: 0; transform: scale(1.35) rotate(-14deg); }
+  to { opacity: 1; transform: none; }
+}
+.inst-visto { stroke-dasharray: 1; stroke-dashoffset: 1; animation: inst-desenho 0.55s 0.45s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
+
+/* Entrada do conteúdo: seções sobem levemente, linhas das listas em cascata. */
+@keyframes inst-subir { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.inst-page main .inst-section { animation: inst-subir 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.inst-page main .inst-section:nth-of-type(2) { animation-delay: 70ms; }
+.inst-page main .inst-section:nth-of-type(3) { animation-delay: 140ms; }
+.inst-page main .inst-section:nth-of-type(4) { animation-delay: 210ms; }
+.inst-list > li { animation: inst-subir 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.inst-list > li:nth-child(2) { animation-delay: 40ms; }
+.inst-list > li:nth-child(3) { animation-delay: 80ms; }
+.inst-list > li:nth-child(4) { animation-delay: 120ms; }
+.inst-list > li:nth-child(5) { animation-delay: 160ms; }
+.inst-list > li:nth-child(6) { animation-delay: 200ms; }
+.inst-list > li:nth-child(n + 7) { animation-delay: 240ms; }
+.inst-entrar { animation: inst-subir 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* Linha de lista: fio azul-céu entra à esquerda no hover/foco. */
+.inst-row { position: relative; }
+.inst-row::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+  background: hsl(201 78% 50%); transform: scaleY(0); transform-origin: center;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.inst-row:hover::before, .inst-row:focus-visible::before { transform: scaleY(1); }
+.inst-row:focus-visible { outline: none; background: hsl(var(--muted) / 0.6); }
+
+/* Seções: leve elevação ao passar o mouse (só onde há interação). */
+.inst-section { transition: box-shadow 0.3s ease, border-color 0.3s ease; }
+.inst-section:hover { box-shadow: 0 1px 2px hsl(246 40% 15% / 0.04), 0 8px 24px -12px hsl(246 40% 15% / 0.12); }
+
+/* Campos: foco azul institucional FEMAF com halo suave. */
+.inst-page .inst-field, .inst-page textarea {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.inst-page .inst-field:focus-visible, .inst-page textarea:focus-visible {
+  border-color: hsl(var(--inst-verde));
+  box-shadow: 0 0 0 3px hsl(var(--inst-verde) / 0.12);
+  --tw-ring-shadow: 0 0 #0000;
+}
+
+/* Botões: resposta tátil ao clique. */
+.inst-page :is(button, a)[class~="bg-primary"]:not([role="checkbox"], [role="switch"], [role="radio"]) {
+  transition: background-color 0.2s ease, transform 0.12s ease;
+}
+.inst-page :is(button, a)[class~="bg-primary"]:not([role="checkbox"], [role="switch"], [role="radio"]):active { transform: scale(0.985); }
+
+/* Ponto pulsante para situações que pedem atenção. */
+.inst-pulso { position: relative; display: inline-block; width: 6px; height: 6px; border-radius: 9999px; background: currentColor; }
+.inst-pulso::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: currentColor; animation: inst-pulso 1.8s ease-out infinite; }
+@keyframes inst-pulso { from { transform: scale(1); opacity: 0.6; } to { transform: scale(2.8); opacity: 0; } }
+
+/* Barra superior ganha sombra ao rolar. */
+.inst-bar[data-rolado="true"] { box-shadow: 0 8px 24px -12px hsl(246 60% 6% / 0.45); }
+
+@media (prefers-reduced-motion: reduce) {
+  .inst-folha, .inst-desenhar, .inst-girar, .inst-girar-lento, .inst-selo, .inst-visto,
+  .inst-page main .inst-section, .inst-list > li, .inst-entrar, .inst-pulso::after {
+    animation: none !important;
+  }
+  .inst-desenhar, .inst-visto { stroke-dashoffset: 0; }
+}
+
+/* ── Painel administrativo: mesmos princípios da Central ────────────────────
+   As páginas do admin usam utilitários antigos (vidro, degradês, brilho). Dentro de .inst-admin eles
+   viram superfícies planas com fio de contorno, azul institucional FEMAF sólido e títulos em serifa. */
+.inst-page .font-display { font-family: 'Source Serif 4', Georgia, serif; letter-spacing: -0.01em; }
+
+.inst-admin main :is(.glass-card, .glass-card-hover, .premium-card) {
+  background: hsl(var(--card));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+  box-shadow: none;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.inst-admin main .premium-card::before { display: none; }
+.inst-admin main .glass-card-hover:hover {
+  transform: none;
+  border-color: hsl(var(--inst-verde) / 0.35);
+  box-shadow: 0 1px 2px hsl(246 40% 15% / 0.04), 0 8px 24px -12px hsl(246 40% 15% / 0.14);
+}
+.inst-admin main :is(.rounded-xl, .rounded-2xl, .rounded-3xl) { border-radius: 8px; }
+.inst-admin main .rounded-lg { border-radius: 6px; }
+
+/* Cartões do shadcn (Card) com o mesmo tratamento. */
+.inst-admin main .rounded-lg.border.bg-card { box-shadow: none; }
+.inst-admin main .rounded-lg.border.bg-card:hover { box-shadow: 0 1px 2px hsl(246 40% 15% / 0.04), 0 8px 24px -12px hsl(246 40% 15% / 0.12); }
+.inst-admin main .rounded-lg.border.bg-card { transition: box-shadow 0.3s ease; animation: inst-subir 0.55s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* Selos de ícone e destaques: índigo e azul-céu sólidos, sem brilho. */
+.inst-admin main .gradient-primary { background: hsl(var(--inst-verde)); box-shadow: none !important; }
+.inst-admin main .gradient-accent { background: hsl(201 78% 48%); }
+.inst-admin main .text-gradient { background: none; -webkit-text-fill-color: currentColor; color: hsl(var(--inst-verde)); }
+.dark .inst-admin main .text-gradient { color: hsl(var(--primary)); }
+.inst-admin main :is(.btn-glow)::after { display: none; }
+.inst-admin main :is(.orb, .noise-overlay::after) { display: none; }
+.inst-admin main .icon-badge:hover { transform: none; }
+.inst-admin main .lift-hover:hover { transform: none; }
+.inst-admin main .eyebrow { color: hsl(var(--muted-foreground)); background: none; border: 0; padding: 0; letter-spacing: 0.16em; }
+
+/* Campos antigos e selects. */
+.inst-admin main .input-premium { border-radius: 6px; box-shadow: none; background: hsl(var(--background)); }
+.inst-admin main .input-premium:focus-visible {
+  border-color: hsl(var(--inst-verde));
+  box-shadow: 0 0 0 3px hsl(var(--inst-verde) / 0.12);
+  --tw-ring-shadow: 0 0 #0000;
+}
+
+/* Tabelas: cabeçalho em versalete e linhas com realce suave. */
+.inst-admin main thead th { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: hsl(var(--muted-foreground)); }
+.inst-admin main tbody tr { transition: background-color 0.15s ease; }
+
+/* Abas (shadcn Tabs): sublinhado em vez de pílula. */
+.inst-admin main [role="tablist"] { background: transparent; border-bottom: 1px solid hsl(var(--border)); border-radius: 0; padding: 0; height: auto; justify-content: flex-start; }
+.inst-admin main [role="tab"] { border-radius: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; padding: 0.6rem 0.9rem; box-shadow: none !important; }
+.inst-admin main [role="tab"][data-state="active"] { background: transparent; border-bottom-color: hsl(201 78% 50%); font-weight: 600; color: hsl(var(--foreground)); }

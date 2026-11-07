@@ -1,0 +1,27 @@
+{
+  "id": "/",
+  "name": "Plataforma de Gestão Financeira FEMAF",
+  "short_name": "Gestão FEMAF",
+  "description": "Plataforma de Gestão Financeira – FEMAF",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "background_color": "#0B0A3A",
+  "theme_color": "#1E1180",
+  "orientation": "portrait",
+  "categories": ["education", "business", "productivity"],
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

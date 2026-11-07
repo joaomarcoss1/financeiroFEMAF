@@ -1,0 +1,19 @@
+project_id = "witmbqswbhpmngmnigly"
+
+[functions.registrar-ponto]
+verify_jwt = false
+
+[functions.coord-anexo-url]
+verify_jwt = false
+
+[functions.prova-enviar]
+verify_jwt = false
+
+[functions.prova-checklist]
+verify_jwt = false
+
+[functions.prova-gerar]
+verify_jwt = true
+
+[functions.check-faltas]
+verify_jwt = false
