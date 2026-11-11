@@ -25,3 +25,6 @@ dist-ssr
 
 # variáveis locais
 .env
+
+# cache local da CLI do Supabase
+supabase/.temp/
