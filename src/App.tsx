@@ -95,6 +95,7 @@ const App = () => (
             <Suspense fallback={<PageFallback />}>
               <Routes>
                 <Route path="/" element={<BaterPonto />} />
+                <Route path="/ponto" element={<BaterPonto somenteProfessor />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/conecte-se" element={<Login />} />
                 <Route path="/instalar" element={<Instalar />} />

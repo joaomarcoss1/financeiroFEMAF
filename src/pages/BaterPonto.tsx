@@ -39,7 +39,11 @@ import { getAppSettings, DEFAULT_SETTINGS, type AppSettings } from '@/lib/appSet
 
 type CalEntry = { data: string; tipo: 'feriado'|'recesso'|'sabado_letivo'|'evento'|'prova'|'reposicao'; descricao: string };
 
-export default function BaterPonto() {
+/**
+ * `somenteProfessor`: versão isolada (rota /ponto) para os professores — só o registro de aula,
+ * sem a aba do ponto administrativo e sem atalhos para coordenação, permuta, provas ou área administrativa.
+ */
+export default function BaterPonto({ somenteProfessor = false }: { somenteProfessor?: boolean } = {}) {
   const [professores, setProfessores] = useState<Professor[]>([]);
   const [allMaterias, setAllMaterias] = useState<Materia[]>([]);
   const [allTurmas, setAllTurmas] = useState<Turma[]>([]);
@@ -67,6 +71,15 @@ export default function BaterPonto() {
   const [historicoLimite, setHistoricoLimite] = useState(5);
   const [appCfg, setAppCfg] = useState<AppSettings>(DEFAULT_SETTINGS);
   const [modo, setModo] = useState<'professor' | 'administrativo'>('professor');
+  useEffect(() => {
+    if (!somenteProfessor) return;
+    const link = document.querySelector<HTMLLinkElement>('link[rel="manifest"]');
+    const anterior = link?.getAttribute('href');
+    link?.setAttribute('href', '/manifest-ponto.webmanifest');
+    const tituloAnterior = document.title;
+    document.title = 'Ponto do Professor – FEMAF';
+    return () => { if (link && anterior) link.setAttribute('href', anterior); document.title = tituloAnterior; };
+  }, [somenteProfessor]);
   const [funcsAdm, setFuncsAdm] = useState<{ id: string; nome_completo: string; tipo_funcionario: string; funcao_nome: string | null; escala_id: string | null }[]>([]);
   const [funcAdmId, setFuncAdmId] = useState('');
   useEffect(() => { getAppSettings().then(setAppCfg).catch(() => {}); }, []);
@@ -368,6 +381,7 @@ export default function BaterPonto() {
             {professorId && (
               <SinoNotificacoes professor_id={professorId} pin={pin} className="text-primary-foreground hover:bg-primary-foreground/10" />
             )}
+            {!somenteProfessor && (<>
             <Link
               to="/coordenador/login"
               className="text-primary-foreground/70 hover:text-primary-foreground px-1.5 sm:px-2 py-2 rounded-lg hover:bg-primary-foreground/10 transition-colors text-[10px] sm:text-[11px] font-semibold"
@@ -408,6 +422,7 @@ export default function BaterPonto() {
             >
               <Settings size={18} className="sm:w-5 sm:h-5" aria-hidden />
             </Link>
+            </>)}
           </div>
         </div>
       </header>
@@ -424,10 +439,11 @@ export default function BaterPonto() {
             </div>
             <div>
               <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight leading-tight">Bater Ponto</h1>
-              <p className="text-muted-foreground text-sm font-medium">Registrar aula</p>
+              <p className="text-muted-foreground text-sm font-medium">{somenteProfessor ? 'Professor · registrar aula' : 'Registrar aula'}</p>
             </div>
           </motion.div>
 
+          {!somenteProfessor && (
           <div className="grid grid-cols-2 gap-1 p-1 rounded-2xl bg-muted/40 border border-border/60">
             <button
               type="button"
@@ -448,6 +464,7 @@ export default function BaterPonto() {
               <Briefcase size={16} aria-hidden /> Administrativo
             </button>
           </div>
+          )}
 
           {modo === 'administrativo' ? (
             funcAdmId ? (
