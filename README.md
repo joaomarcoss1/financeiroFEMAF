@@ -77,3 +77,10 @@ npm run dev
 ```bash
 npm test
 ```
+
+## Configuração do projeto Supabase (já aplicada em produção)
+
+- **Edge Functions** instaladas: `registrar-ponto`, `aprovar-registro`, `check-faltas`, `coord-anexo-url`, `create-admin`, `prova-checklist`, `prova-enviar`, `prova-gerar`, `send-push`, `vapid-public-key`.
+- **Segredos das funções**: `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` (notificações push) e `CRON_SECRET` (agendamento).
+- **Agendamento** `femaf-check-faltas` (pg_cron, a cada 5 min) chama `check-faltas` com o cabeçalho `x-cron-secret`, lido do Vault (`check_faltas_secret`). Avisa o professor 10 min após o início da aula sem ponto e a administração ao fim da aula.
+- **Auth**: Site URL `https://financeiro-femaf.vercel.app` e redirecionamentos permitidos para o domínio de produção e as prévias da Vercel.
