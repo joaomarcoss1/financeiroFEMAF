@@ -43,7 +43,7 @@ npx supabase functions deploy
 - Cursos: Engenharia Civil (`eng`), Pedagogia (`ped`), Psicologia (`psi`).
 - 12 turmas (noturno): ENG 2º/4º/6º, PED 2º/4º/6º/8º, PSI 2º/4º/6º/8º/10º.
 - 67 disciplinas com carga horária, vinculadas às turmas.
-- 22 professores (Pedagogia e Psicologia) vinculados às suas disciplinas — falta completar CPF, PIX, e‑mail e valor da hora‑aula.
+- 31 professores vinculados às suas disciplinas (Engenharia Civil já com valor da hora‑aula por titulação).
 - Grade semanal fixa (1º ao 4º horário) de cada disciplina com dia definido no horário.
 - Feriados nacionais de 2026.2.
 
